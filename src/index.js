@@ -1,9 +1,11 @@
-import { ColorModeScript } from '@chakra-ui/react';
+import { ColorModeScript, theme } from '@chakra-ui/react';
 import React, { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { ChakraProvider } from '@chakra-ui/react';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
@@ -11,7 +13,10 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <StrictMode>
     <ColorModeScript />
-    <App />
+    <ChakraProvider theme={theme}>
+      <ColorModeSwitcher />
+      <App />
+    </ChakraProvider>
   </StrictMode>
 );
 
@@ -24,3 +29,6 @@ serviceWorker.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+export const server =
+  'https://api.coingecko.com/api/v3';
